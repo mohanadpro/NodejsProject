@@ -1,0 +1,55 @@
+
+<div class="checkout row">
+
+<div class="offset-md-1 col-md-6 text-center "  style="margin-top: 50px;">
+    <div class="text-center">
+        <h1> Credit cart info</h1>
+        {{#if checkoutError}}
+        <div class="alert alert-danger">
+            {{checkoutError}}
+        </div>
+        {{/if}}
+    </div>
+    <form method="POST" action="/cart/checkout" id="payment-form">
+        <div class="form-group">
+            <input type="text" class="form-control" name="txtCheckoutName" id="checkoutName" 
+                placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="txtCheckoutAddress" id="checkoutAddress" placeholder="Enter your address">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="txtCheckoutCreditCartName" id="checkoutCreditCartName" placeholder="Enter your credit cart name">
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" id="card-number" size="20" data-stripe="number" max="9999999999999999" placeholder="Enter your credit cart number">
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <input type="number"  class="form-control" id="card-expiry-month"  min="1" max="12" data-stripe="exp_month" placeholder="Validity month">
+            </div> 
+            <div class="form-group col-md-6">
+                <input type="number" class="form-control" id="card-expiry-year" min="20" max="200" size="2"  data-stripe="exp_year" placeholder="Validity year">
+            </div> 
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" id="card-cvc" min="1" max="9999" placeholder="Enter your CVC" size="4" data-stripe="cvc">
+        </div>    
+        <div class="form-group">       
+        <button type="submit" class="btn btn-primary form-control">Checkout <span style="font-weight: bold;">{{totalPrice}}$</span> </button>
+        </div>
+
+    </form>
+
+</div>
+<div class="col-md-5">
+    <div class="flexdisplay">
+
+            <img src="/images/transfermoney.jpg" alt="">
+
+    </div>
+</div>
+</div>
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script src="/javascripts/checkout.js"></script>

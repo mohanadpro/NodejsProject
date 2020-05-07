@@ -1,0 +1,107 @@
+<div class="cart"  style="margin-top: 50px;">
+<div class="tb">
+<table class="table text-center">
+  <thead>
+    <tr>
+      <th scope="col">Product name</th>
+      <th scope="col">Count</th>
+      <th scope="col">Price</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each cart.selectedProduct as |alias index|}}
+      <tr>
+        <td >{{alias.name}}</td>
+        <td>
+          {{#if (isEqualOne @alias.count)}}
+          <a href="/cart/decreaseProduct/{{index}}" class="btn disabled"><i class="fas fa-minus-circle"></i></a>            
+          {{else}}
+          <a href="/cart/decreaseProduct/{{index}}" class="btn"><i class="fas fa-minus-circle" ></i></a>  
+          {{/if}}
+            {{alias.count}}
+          <a href="/cart/increaseProduct/{{index}}" class="btn"><i class="fas fa-plus-circle"></i></a>            
+        </td>
+        <td>{{alias.price}}</td>
+        <input type="hidden" name="" id="productNameTable" value="{{index}}">
+        <td><i class="open-RemoveItemDialog fas fa-trash" data-toggle="modal" data-target="#removeItem" data-id="{{alias._id}}"></i></td>
+      </tr>
+      {{/each}}
+  </tbody>
+</table>
+</div>
+<div class="cartInfo">
+  <table class="">
+  <tr>
+    <td><h3>Username:</h3></td>
+    <td><h3>{{email}}</h3></td>
+  </tr>
+  <tr>
+    <td><h3> Total Count:</h3></td>
+    <td><h3>{{totalCount}}</h3></td>
+  </tr>
+  <tr>
+    <td><h3> Total Price:</h3></td>
+    <td><h3>{{totalPrice}}</h3></td>
+  </tr>
+  <tr>
+    <td>
+           <a href="/cart/checkout" class="btn btn-success"><i class="fas fa-check" style="color: white;"></i> Save</a>
+    </td>
+    <td>
+  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#CancelOrder"><i class="fas fa-minus-circle" style="color: white;"></i>Cancel</button>
+    </td>
+  </tr>
+   </table>
+   
+
+</div>
+
+</div>
+
+
+<div class="modal fade" id="removeItem" tabindex="-1" role="dialog" aria-labelledby="removeItem" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Warning message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure that you want to delete the item <span id="productId">{{deletedProductName}}</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+        <a href="" id="deleteItemId" class="btn btn-danger">Delete </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal Cancel order-->
+<div class="modal fade" id="CancelOrder" tabindex="-1" role="dialog" aria-labelledby="CancelOrder" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Warning message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure the you want to Cancel the order
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+        <a href="/cart/cancelOrder" type="button" class="btn btn-danger">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/javascripts/cart.js"></script>

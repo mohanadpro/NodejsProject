@@ -1,0 +1,274 @@
+
+// start intialize variable
+$btnCardColor:black;
+$LeftRightPadding:7px;
+$TopBottomPadding:4px;
+$btnBorder:1px solid rgb(228, 231, 169);
+$mainBackgroundColor:#f0c14b;
+$firstlinearGradient:linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+$secondlinearGradient:linear-gradient(141deg, #e6c573 0%, #e9c15b 51%, #f0c14b 75%);
+$CardWidthImage:286px;
+$CardHeightImage:250px;
+$BigFontSize:20px;
+$SmallFontSize:15px;
+$dirPage:ltr;
+$floatleft:left;
+$floatright:right;
+$firstMainColor:#ec1c23;
+$secondMainColor:#08526d;
+
+// end intialize variable
+
+
+// start determine page direction
+
+@if($dirPage==ltr)
+{
+ $floatleft:left;
+ $floatright:right;
+}
+@else
+{
+$floatleft:right;
+$floatright:left;
+}
+
+// start determine page direction
+
+
+body{
+    perspective: 600px;
+}
+
+
+// start header
+
+
+.Massive,.Dynamic{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.Massive{
+    color: $firstMainColor;
+}
+
+.Dynamic{
+    color: white;
+}
+
+// end header
+
+.container .row{
+    margin-top: 20px;
+}
+
+nav i{
+    margin: 0 10px;
+}
+
+
+// start design card
+
+.card .card-image{
+    transform-origin: 50% 50%;
+}
+
+.card .card-image-info{
+    position: relative;
+    height: $CardHeightImage;
+    transform-style: preserve-3d;
+
+}
+
+.products .container .row .col-sm-4
+{
+    margin-bottom: 20px;
+}
+
+
+.card .card-image-info:hover{
+    transition: transform 0.5s ease-in-out;
+    transform: rotateY(180deg);
+}
+
+.card .card-image-info .card-image{
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+    backface-visibility: hidden;
+}
+
+.card .card-image-info .card-image img{
+    height:$CardHeightImage;
+}
+
+.card .card-image-info .info{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transform:rotateY(180deg);
+    background-image: $firstlinearGradient;
+ }
+
+
+ .card .card-image-info .info ul li{
+     color:black;
+     font-weight: bold;
+     list-style: none;
+ } 
+
+.card .card-body{
+    position: relative;  
+    display: flex;
+    flex-direction: column;      
+    
+}
+
+.card .card-body .btnCard{
+    background-image: $firstlinearGradient;
+    padding:$TopBottomPadding $LeftRightPadding ;
+    border: $btnBorder;
+    color: $btnCardColor;    
+    font-weight: bold;   
+    float: $floatright;
+    display: inline-block
+}  
+
+.card .card-body .btnCard:hover{
+    text-decoration: none;
+    color: $btnCardColor;       
+
+}
+
+
+.card .card-body .card-title,.card-body .card-text{
+    color: $secondMainColor;
+    display: block;
+    float: $floatleft;
+}
+.card-body .card-text{
+    overflow: auto;
+    max-height: 100px;
+}
+.card .card-body .price-btn-card{
+    margin-top: 20px;
+}
+.card-price{
+    float: $floatleft;
+    font-size: $BigFontSize;
+    font-weight: bold;
+    color: $firstMainColor;
+    padding-top: $TopBottomPadding - 2;
+}
+.card-price span{
+    color: $secondMainColor;
+}
+
+// end design card
+
+
+// start cart
+.cart{
+    display: grid;
+    grid-template-areas: 
+    "tbs tbs tbs cartInfo"
+    "tbs tbs tbs cartInfo"
+    "tbs tbs tbs cartInfo"
+    "tbs tbs tbs cartInfo"  
+    ;
+    grid-gap: 10px;
+    text-align: center;
+}
+.tb{
+    grid-area: tbs;
+}
+ .cartInfo{
+    grid-area: cartInfo;
+}
+
+.cartInfo table tr td{
+    margin-bottom: 50px;
+}
+
+.ApproveProccess{
+    grid-area: ApproveProccess;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    // grid-auto-rows: auto;
+}
+
+.ApproveProccess{
+    height: 40px;
+}
+
+.cart thead{
+    background-color: $secondMainColor;
+    color: white;
+}
+
+.cart table{
+    width: 100%;
+}
+.cart i{
+    color: $secondMainColor
+}
+.cart i:hover{
+    cursor: pointer;
+}
+
+// end cart
+
+// start checkout
+
+.checkout input[type=text],
+.checkout input[type=number]
+{
+    text-align: center;
+    border: none;
+    border-bottom: 4px solid $secondMainColor; 
+    color: $secondMainColor ;
+    outline: none; 
+    margin-bottom: 30px;  
+}
+
+
+
+.checkout .form-control:focus,
+.checkout .form-control:focus
+{
+  border: 4px solid $secondMainColor; 
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+.checkout h1{
+    color: $firstMainColor;
+}
+.checkout button{
+    background-color: $secondMainColor;
+}
+
+.checkout .flexdisplay{
+    height: 80vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkout img{
+    display: block;
+    width: 300px;
+    height: 300px;
+}
+
+
+
+// end checkout

@@ -1,0 +1,47 @@
+{{!-- start show products --}}
+
+<div class="products">
+    {{#if checkoutSuccess}}
+    <div class="alert alert-danger" id="payment-success">
+        {{checkoutSuccess}}
+    </div>
+    {{/if}}
+    <div class="container">
+        {{#each prods}}  
+        <div class="row">
+            {{#each this}}
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-image-info">
+                        <div class="card-image">
+                            <img class="card-img-top" src="{{this.pathProductImage}}" alt="Card image cap">
+                        </div>
+                        <div class="info">
+                            <ul>
+                                <li>Storage: {{this.productInfo.storageName}}</li>
+                                <li>Processor: {{this.productInfo.processorsCore}}</li>
+                                <li>Snapdragon: {{this.productInfo.ramNumber}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <h5 class="card-title">{{this.productName}}</h5>
+                        </div>
+                        <div>
+                            <p class="card-text">
+                                {{this.productCompany}}
+                            </p>
+                        </div>
+                        <div class="price-btn-card">
+                            <p class="card-price"><span>Price :</span> {{this.productPrice}}$</p>
+                            <a href="/cart/addProductToCart/{{this._id}}" class="btnCard">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+         {{/each}}
+    </div>
+</div>

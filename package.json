@@ -1,0 +1,29 @@
+{
+  "name": "shoppingcard",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.4",
+    "csurf": "^1.10.0",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.4.0",
+    "hbs": "~4.0.4",
+    "http-errors": "~1.6.3",
+    "https-proxy-agent": "^5.0.0",
+    "javascript": "^1.0.0",
+    "mongoose": "^5.9.10",
+    "morgan": "~1.9.1",
+    "passport": "^0.4.0",
+    "passport-facebook": "^3.0.0",
+    "passport-local": "^1.0.0",
+    "stripe": "^8.49.0"
+  }
+}

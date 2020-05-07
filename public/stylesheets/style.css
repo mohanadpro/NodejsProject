@@ -1,0 +1,254 @@
+body {
+  -webkit-perspective: 600px;
+          perspective: 600px;
+}
+
+.Massive, .Dynamic {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.Massive {
+  color: #ec1c23;
+}
+
+.Dynamic {
+  color: white;
+}
+
+.container .row {
+  margin-top: 20px;
+}
+
+nav i {
+  margin: 0 10px;
+}
+
+.card .card-image {
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+}
+
+.card .card-image-info {
+  position: relative;
+  height: 250px;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.products .container .row .col-sm-4 {
+  margin-bottom: 20px;
+}
+
+.card .card-image-info:hover {
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.card .card-image-info .card-image {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  transition: -webkit-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.card .card-image-info .card-image img {
+  height: 250px;
+}
+
+.card .card-image-info .info {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 1;
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+}
+
+.card .card-image-info .info ul li {
+  color: black;
+  font-weight: bold;
+  list-style: none;
+}
+
+.card .card-body {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.card .card-body .btnCard {
+  background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  padding: 4px 7px;
+  border: 1px solid #e4e7a9;
+  color: black;
+  font-weight: bold;
+  float: right;
+  display: inline-block;
+}
+
+.card .card-body .btnCard:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.card .card-body .card-title, .card-body .card-text {
+  color: #08526d;
+  display: block;
+  float: left;
+}
+
+.card-body .card-text {
+  overflow: auto;
+  max-height: 100px;
+}
+
+.card .card-body .price-btn-card {
+  margin-top: 20px;
+}
+
+.card-price {
+  float: left;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ec1c23;
+  padding-top: 2px;
+}
+
+.card-price span {
+  color: #08526d;
+}
+
+.cart {
+  display: -ms-grid;
+  display: grid;
+      grid-template-areas: "tbs tbs tbs cartInfo" "tbs tbs tbs cartInfo" "tbs tbs tbs cartInfo" "tbs tbs tbs cartInfo";
+  grid-gap: 10px;
+  text-align: center;
+}
+
+.tb {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 4;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-area: tbs;
+}
+
+.cartInfo {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 4;
+  -ms-grid-column: 4;
+  grid-area: cartInfo;
+}
+
+.cartInfo table tr td {
+  margin-bottom: 50px;
+}
+
+.ApproveProccess {
+  grid-area: ApproveProccess;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.ApproveProccess {
+  height: 40px;
+}
+
+.cart thead {
+  background-color: #08526d;
+  color: white;
+}
+
+.cart table {
+  width: 100%;
+}
+
+.cart i {
+  color: #08526d;
+}
+
+.cart i:hover {
+  cursor: pointer;
+}
+
+.checkout input[type=text],
+.checkout input[type=number] {
+  text-align: center;
+  border: none;
+  border-bottom: 4px solid #08526d;
+  color: #08526d;
+  outline: none;
+  margin-bottom: 30px;
+}
+
+.checkout .form-control:focus,
+.checkout .form-control:focus {
+  border: 4px solid #08526d;
+  border-radius: 20px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.checkout h1 {
+  color: #ec1c23;
+}
+
+.checkout button {
+  background-color: #08526d;
+}
+
+.checkout .flexdisplay {
+  height: 80vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.checkout img {
+  display: block;
+  width: 300px;
+  height: 300px;
+}

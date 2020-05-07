@@ -1,0 +1,38 @@
+
+<div class="signup" style="padding-top: 80px;">
+  <div class="row offset-lg-1">
+    <div class="col-md col-lg-5 aboutUs">
+      <ul>
+        <li><i class="fas fa-address-card"></i>You can get anything form our company.</li>
+        <li><i class="fas fa-dollar-sign"></i> Our items have a good quality with the appropriate price</li>
+        <li><i class="fa fa-phone"></i> if you have a propblem don't hesitate to contact us</li>
+      </ul>
+    </div>
+    <div class="col-lg-5" >
+      <h1 class="text-center">Log In</h1>              
+
+      <form name="signupForm" action="signin" method="POST" onsubmit="return validateSignInForm()">
+        <div class="form-group">
+          <input type="email" class="form-control text-center" id="txtemail" name="txtemail" aria-describedby="emailHelp"
+            placeholder="Enter email">
+            <span class="message-error" id="email-error"></span>
+            {{#if userNotFound}}
+               <span class="message-error">{{userNotFound}}</span>
+            {{/if}}
+        </div>
+        <div class="form-group">          
+          <i class="fas fa-eye fa-2x" onclick="showPassword()"></i>
+          <input type="password" class="form-control text-center" id="txtpassword" name="txtpassword" placeholder="Enter Password">
+            {{#if passwordWrong}}
+               <span class="message-error">{{passwordWrong}}</span>
+            {{/if}}
+        </div>
+        <input type="hidden" name="_csrf" style="height: 0;" value="{{token}}" id=""><br/>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Log In</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script src="/javascripts/sign-in.js"></script>
