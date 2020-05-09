@@ -1,8 +1,10 @@
 const Cart=require('../models/Carts');
 const DemandedProducts = require('../models/DemandedProducts');
 const Product=require('../models/Products');
+const Order=require('../models/Orders');
 const calc=require('./utilities/calculateTotalCountAndPrice');
 const stripe=require('stripe')('');
+const Str=require('@supercharge/strings');
   
 
 var addProductToCart=function(req,res,next){
@@ -78,8 +80,19 @@ var getCartDetails=function(req,res,next){
 }
 
 var cancelOrder=function(req,res,next){
-    req.session.cartval=undefined;
-    res.redirect('/');
+
+    Cart.deleteOne({_id:req.session.cartval._id},(err,cart)=>{
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            req.session.cartval=undefined;
+            res.redirect('/');
+        }
+    })
+
 }
 
 var deleteItem=function(req,res,next)
@@ -125,29 +138,51 @@ var checkout=function(req,res,next)
 var checkoutPost=function(req,res,next)
 {
 
-    stripe.charges.create({
-        amount: req.session.cartval.totalPrice,
-        currency: "usd",
-        source:req.body.stripeToken, // obtained with Stripe.js
-        description:"charge amount"
-      }, {
-        idempotencyKey: "uAZP9K1reOpqnBKE"
-      },
-      function(err, charge) {
-        // asynchronously called
-        if(err) 
+    // stripe.charges.create({
+    //     amount: req.session.cartval.totalPrice,
+    //     currency: "usd",
+    //     source:req.body.stripeToken, // obtained with Stripe.js
+    //     description:"charge amount"
+    //   }, {
+    //     idempotencyKey: "uAZP9K1reOpqnBKE"
+    //   },
+    //   function(err, charge) {
+    //     // asynchronously called
+    //     if(err) 
+    //     {
+    //         console.log(err);
+    //         req.flash('checkout-error',err.raw.message);
+    //         res.redirect('/cart/checkout');
+    //     }       
+    //     else
+    //     { 
+    //         req.flash('checkout-success','Your order has been done successfully...');
+    //         res.redirect('/');
+    //     }
+    //   });
+
+    order=new Order({
+        user:req.user._id,
+        cart:req.session.cartval,
+        name:req.body.txtCheckoutName,
+        address:req.body.txtCheckoutAddress,
+        totalPrice:req.session.cartval.totalPrice,
+        paymentId:Str.random()
+
+    });
+    order.save((err,order)=>{
+        if(err)
         {
-            console.log(err);
-            req.flash('checkout-error',err.raw.message);
+            req.flash('checkout-error',err);
             res.redirect('/cart/checkout');
-        }       
+        }
         else
-        { 
+        {
+            req.session.cartval=undefined;
             req.flash('checkout-success','Your order has been done successfully...');
             res.redirect('/');
         }
-      });
-
+    })
 
 
 }

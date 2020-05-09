@@ -1,0 +1,14 @@
+                        <table>
+                              <thead>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Product Price</th>
+                                    <th scope="col">Product count</th>
+                              </thead>
+                              {{#each alias.cart.selectedProduct as |product|}}
+                              <tr>
+                                    <td>{{product.name}}</td>
+                                    <td>{{product.price}}</td>
+                                    <td>{{product.count}}</td>
+                              </tr>
+                              {{/each}}
+                        </table>

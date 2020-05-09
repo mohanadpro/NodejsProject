@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const passport = require('passport');
 const User=require('../models/Users');
+const Cart=require('../models/Carts');
+const Order=require('../models/Orders');
 const csrf=require('csurf');
 
 router.use(csrf());
@@ -43,11 +45,17 @@ router.post('/signin',passport.authenticate('local-signin' , {
 
 
 router.get('/profile',isSignedIn,(req,res,next)=>{
+
   registeredUser =new User(req.user);
-  res.render('Usermanagement/profile.hbs',{   
-    isSignin:req.user,
-    email:registeredUser.email
-  });
+  Order.find({user:req.user._id},(err,orders)=>{
+
+    res.render('Usermanagement/profile.hbs',{   
+      isSignin:req.user,
+      email:registeredUser.email,
+      orders:orders
+    });
+  })
+
 })
 
 function isSignedIn(req,res,next)
@@ -62,10 +70,62 @@ function isSignedIn(req,res,next)
 
 
 router.get('/logout',isSignedIn,(req,res,next)=>{
+
+  cart=new Cart(req.session.cartval);
+  if(req.session.cartval==undefined)
+  {
+    destroySession(req,res);
+  }
+  else
+  {
+    Cart.findById(cart.id,(err,storedCart)=>{
+
+      if(storedCart)
+      {
+        var updatedColumn={$set:{
+          createAt:Date.now(),
+          selectedProduct:cart.selectedProduct,
+          totalPrice:cart.totalPrice,
+          totalCount:cart.totalCount
+        }}
+        Cart.updateOne({_id:cart.id},updatedColumn,(err,updatedCart)=>{
+          if(err)
+          {
+            console.log(err);
+          }
+          else
+          {
+            destroySession(req,res);
+          }
+        })       
+      }
+      else
+      {
+        cart['createAt']=Date.now();
+        cart.save((err,userCart)=>
+        {
+            if(err)
+            {
+              console.log(err);
+            }
+            else
+            {
+              console.log(userCart);
+              destroySession(req,res);
+            }
+        })
+      }
+    })
+
+  }
+})
+
+function destroySession(req,res)
+{
   req.session.destroy();
   req.logOut();
   res.redirect('/');
-})
+}
 
 function isNotSignedIn(req,res,next)
 {

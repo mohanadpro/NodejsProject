@@ -20,8 +20,12 @@ const cartsSchema=mongo.Schema({
     {
         type:Array,
         required:true
-    }        
+    },       
+    createAt :{
+        type:Date ,        
+        index : {expires : '2m'}
+    }       
 })
 
 
-module.exports=mongo.model('Carts',cartsSchema);
+module.exports=mongo.model('Carts',cartsSchema);    

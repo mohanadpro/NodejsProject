@@ -16,7 +16,7 @@ var cartsRouter = require('./routes/cart');
 
 var app = express();
 
-mongo.connect('mongodb://localhost/ShoppingCard',{ useNewUrlParser: true },(error)=>{
+mongo.connect('mongodb://localhost/ShoppingCard',{ useNewUrlParser: true, useCreateIndex:true ,useUnifiedTopology: true },(error)=>{
   if(error)
   {
     console.log(error);
